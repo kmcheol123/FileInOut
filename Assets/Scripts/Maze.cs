@@ -18,14 +18,35 @@ public class Maze : MonoBehaviour
     public int depth = 30;
     public int[,] map;      
     public int scale = 6;
+
     void Start()
     {
         InitialiseMap();
         SetMapLocation();
         Generate(5, 5);
-        DrawMap();
+        map.GetLength(0);
+        string mapString = "";
+        for(int i = 0; i < map.GetLength(0); i++)
+        {
+            for(int j = 0; j < map.GetLength(1); j++)
+            {
+                //mapString += "i:" + i + ";j:" + j + ";Data:" + map[i, j].ToString() + ";,";
+                mapString += map[i,j].ToString()+",";
+            }
+        }
+        FIleInOut.instance.SaveText(mapString);
+        string result = FIleInOut.instance.LoadText();
+        string[] mapmap= result.Split(',');
 
+        for (int x = 0; x < map.GetLength(0); x++)
+        {
+            for (int z = 0; z < map.GetLength(1); z++)
+            {
+                map[x, z] += int.Parse(mapmap[z + x * map.GetLength(0)]);
+            }
+        }
     }
+
     void InitialiseMap()
     {
         map = new int[width, depth];

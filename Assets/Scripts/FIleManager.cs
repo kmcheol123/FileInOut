@@ -58,8 +58,6 @@ public class FIleManager : MonoBehaviour
     }
     #endregion
     
-
-
     #region json ют╥б UI
     public void OnSaveJson()
     {

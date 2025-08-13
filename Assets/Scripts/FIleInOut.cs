@@ -23,18 +23,14 @@ public class FIleInOut : MonoBehaviour
     /// </summary>
     public string folderName = "PlayerData";
     /// <summary>
-    //. 실제 경로들
+    /// 실제 경로들
     /// </summary>
     string folderPath;
     string txtPath;
     string jsonPath;
-
     private void Awake()
     {
         instance = this;
-    }
-    void Start()
-    {
         // 다양한 플렛폼에서 사용
         Debug.Log(Application.persistentDataPath);
         // 현재 어플리케이션의 경로
@@ -42,6 +38,12 @@ public class FIleInOut : MonoBehaviour
         folderPath = Path.Combine(Application.dataPath, folderName);
         txtPath = Path.Combine(Application.dataPath, folderName, textFileName);
         jsonPath = Path.Combine(Application.dataPath, folderName, jsonFIleName);
+
+    }
+
+    void Start()
+    {
+        
 
     }
     #region txt 파일
@@ -146,7 +148,7 @@ public class FIleInOut : MonoBehaviour
         }
     }
     #endregion 
-
+    
     // 파일 입출력이 안될시 권한을 확인해봐야됨!
     void Update()
     {
