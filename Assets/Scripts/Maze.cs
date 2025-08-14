@@ -35,16 +35,22 @@ public class Maze : MonoBehaviour
             }
         }
         FIleInOut.instance.SaveText(mapString);
+        Debug.Log(mapString);   
         string result = FIleInOut.instance.LoadText();
         string[] mapmap= result.Split(',');
 
-        for (int x = 0; x < map.GetLength(0); x++)
+        string mapstring2 = "";
+        for (int z = 0; z < map.GetLength(0); z++)
         {
-            for (int z = 0; z < map.GetLength(1); z++)
+            for (int x = 0; x < map.GetLength(1); x++)
             {
-                map[x, z] += int.Parse(mapmap[z + x * map.GetLength(0)]);
+
+                map[x, z] = int.Parse(mapmap[x + z * map.GetLength(0)]);
+                mapstring2 += map[x, z].ToString() + ",";
+
             }
         }
+        Debug.Log(mapstring2);
     }
 
     void InitialiseMap()
